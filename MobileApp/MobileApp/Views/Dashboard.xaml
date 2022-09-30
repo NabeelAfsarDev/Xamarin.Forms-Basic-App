@@ -51,8 +51,7 @@
                         <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End</Label>
                         <Label Text="{Binding EndDate, StringFormat='{ddd, dd MMM yyy}'}" Grid.Row="2" Grid.Column="1" FontSize="Medium"/>
                         
-                        <Button Grid.Row="3" Grid.Column="0" Text="Edit" x:Name="EditTerm" Clicked="EditTerm_Clicked_1" />
-                        <Button Grid.Row="3" Grid.Column="0" Text="Edit" x:Name="EditTerm" Clicked="EditTerm_Clicked_1" />
+                        <Button Grid.Row="3" Grid.Column="1" Text="View Classes" x:Name="ViewClass" />
                     </Grid>
 
                     

@@ -45,11 +45,6 @@ namespace MobileApp.Views
             TermsCollection.ItemsSource = await DatabaseService.GetTerms();
         }
 
-        private void EditTerm_Clicked_1(object sender, EventArgs e)
-        {
-
-        }
-
         private async void TermsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.CurrentSelection != null)
