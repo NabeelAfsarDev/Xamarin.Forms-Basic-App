@@ -11,7 +11,9 @@ namespace MobileApp
         {
             InitializeComponent();
 
-            MainPage = new Dashboard();
+            var dashboard = new Dashboard();
+            var navPage = new NavigationPage(dashboard);
+            MainPage = navPage;
         }
 
         protected override void OnStart()
