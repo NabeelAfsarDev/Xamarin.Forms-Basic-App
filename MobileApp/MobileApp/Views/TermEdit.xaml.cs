@@ -40,9 +40,9 @@ namespace MobileApp.Views
             await Navigation.PopAsync();
         }
 
-        private void DeleteTerm_Clicked(object sender, EventArgs e)
+        private async void DeleteTerm_Clicked(object sender, EventArgs e)
         {
-
+            await DatabaseService.DeleteTerm(Convert.ToInt32(TermId.Text));
         }
     }
 }
