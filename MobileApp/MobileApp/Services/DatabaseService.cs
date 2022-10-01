@@ -20,6 +20,7 @@ namespace MobileApp.Services
 
             //Get absolute path to the database file
             var databasePath = Path.Combine(FileSystem.AppDataDirectory, "Schedule.db");
+
             _db = new SQLiteAsyncConnection(databasePath);
             await _db.CreateTableAsync<Term>();
             await _db.CreateTableAsync<Course>();
@@ -49,6 +50,11 @@ namespace MobileApp.Services
         {
             await Init();
             var terms = await _db.Table<Term>().ToListAsync();
+            foreach(var term in terms)
+            {
+                term.StartDate = TimeZoneInfo.ConvertTimeFromUtc(term.StartDate, TimeZoneInfo.Local);
+                term.EndDate = TimeZoneInfo.ConvertTimeFromUtc(term.EndDate, TimeZoneInfo.Local);
+            }
             return terms;
         }
 
@@ -73,17 +79,18 @@ namespace MobileApp.Services
             {
                TermId = termId,
                Title = title,
-               CourseStart = start,
-               CourseEnd = end,
+               Status = status,
+               CourseStart = TimeZoneInfo.ConvertTimeToUtc(start, TimeZoneInfo.Local),
+               CourseEnd = TimeZoneInfo.ConvertTimeToUtc(end, TimeZoneInfo.Local),
                InstructorName = instructor,
                InstructorEmail = instructorEmail,
                InstructorPhone = instructorPhone,
                ObjectiveAssessment = oa,
                PerformanceAssessment = pa,
-               OaStart = oastart,
-               OaEnd = oaEnd,
-               PaStart = paStart,
-               PaEnd = paEnd
+               OaStart = TimeZoneInfo.ConvertTimeToUtc(oastart, TimeZoneInfo.Local),
+               OaEnd = TimeZoneInfo.ConvertTimeToUtc(oaEnd, TimeZoneInfo.Local),
+               PaStart = TimeZoneInfo.ConvertTimeToUtc(paStart, TimeZoneInfo.Local),
+               PaEnd = TimeZoneInfo.ConvertTimeToUtc(paEnd, TimeZoneInfo.Local)
             };
 
             var id = await _db.InsertAsync(course);
@@ -101,6 +108,16 @@ namespace MobileApp.Services
         {
             await Init();
             var courses = await _db.Table<Course>().Where(c => c.TermId == termId).ToListAsync();
+            foreach(var course in courses)
+            {
+                course.CourseStart = TimeZoneInfo.ConvertTimeToUtc(course.CourseStart, TimeZoneInfo.Local);
+                course.CourseEnd = TimeZoneInfo.ConvertTimeToUtc(course.CourseEnd, TimeZoneInfo.Local);
+                course.OaStart = TimeZoneInfo.ConvertTimeToUtc(course.OaStart, TimeZoneInfo.Local);
+                course.OaEnd = TimeZoneInfo.ConvertTimeToUtc(course.OaEnd, TimeZoneInfo.Local);
+                course.PaStart = TimeZoneInfo.ConvertTimeToUtc(course.PaStart, TimeZoneInfo.Local);
+                course.PaEnd = TimeZoneInfo.ConvertTimeToUtc(course.PaEnd, TimeZoneInfo.Local);
+
+            }
             return courses;
         }
 
@@ -114,6 +131,7 @@ namespace MobileApp.Services
                course.Title = title;
                course.CourseStart = start;
                course.CourseEnd = end;
+                course.Status = status;
                course.InstructorName = instructor;
                course.InstructorEmail = instructorEmail;
                course.InstructorPhone = instructorPhone;

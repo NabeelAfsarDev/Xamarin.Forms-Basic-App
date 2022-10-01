@@ -19,6 +19,7 @@ namespace MobileApp.Views
             InitializeComponent();
 
             //Populate Controls
+            TermId.Text = term.Id.ToString();
             TermTitle.Text = term.Title;
             StartDate.Date = term.StartDate;
             EndDate.Date = term.EndDate;
@@ -42,7 +43,10 @@ namespace MobileApp.Views
 
         private async void DeleteTerm_Clicked(object sender, EventArgs e)
         {
-            await DatabaseService.DeleteTerm(Convert.ToInt32(TermId.Text));
+            var id = int.Parse((TermId.Text));
+
+            await DatabaseService.DeleteTerm(id);
+            await Navigation.PopAsync();
         }
     }
 }

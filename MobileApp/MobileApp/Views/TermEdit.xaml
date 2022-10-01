@@ -24,7 +24,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center">ID</Label>
-                <Entry Text="{Binding Id}" x:Name="TermId" Placeholder="Enter Widget Name" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+                <Entry Text="{Binding Id}" x:Name="TermId" Placeholder="Enter Widget Name" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True" />
 
                 <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Title</Label>
                 <Entry Text="{Binding Name}" x:Name="TermTitle" Placeholder="Enter Widget Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"></Entry>

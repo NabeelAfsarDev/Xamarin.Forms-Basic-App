@@ -25,13 +25,9 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>
-                    <Button Text="Add Term"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                            x:Name="AddTerm"/>
-                    <Grid Padding="5" RowSpacing="1" ColumnSpacing="22" BackgroundColor="WhiteSmoke">
+                    <Grid RowSpacing="2" ColumnSpacing="22" Padding="2" BackgroundColor="Azure">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -42,16 +38,16 @@
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Title</Label>
-                        <Label Grid.Row="0" Grid.Column="1" FontSize="Medium" VerticalTextAlignment="Center" Text="{Binding Title}" />
+                        <Label  Grid.Row="0" Grid.Column="0" x:Name="TermId" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding Id}" />
+                        <Label Grid.Row="0" Grid.Column="1" FontSize="Medium" x:Name="TermTitle" VerticalTextAlignment="Center" Text="{Binding Title}" />
 
                         <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start</Label>
-                        <Label Text="{Binding StartDate, StringFormat='{ddd, dd MMM yyy}'}" FontSize="Medium" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" />
+                        <Label Text="{Binding StartDate, StringFormat='{0:MM/dd/yyyy}'}" FontSize="Medium" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" />
 
                         <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End</Label>
-                        <Label Text="{Binding EndDate, StringFormat='{ddd, dd MMM yyy}'}" Grid.Row="2" Grid.Column="1" FontSize="Medium"/>
+                        <Label Text="{Binding EndDate, StringFormat='{0:MM/dd/yyyy}'}" Grid.Row="2" Grid.Column="1" FontSize="Medium"/>
                         
-                        <Button Grid.Row="3" Grid.Column="1" Text="View Classes" x:Name="ViewClass" />
+                        <Button Grid.Row="3" Grid.Column="1" Text="Courses" HorizontalOptions="FillAndExpand" HeightRequest="50" x:Name="ViewClass" Clicked="ViewClass_Clicked" CommandParameter="{Binding .}"/>
                     </Grid>
 
                     

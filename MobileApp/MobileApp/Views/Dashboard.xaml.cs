@@ -53,5 +53,12 @@ namespace MobileApp.Views
                 await Navigation.PushAsync(new TermEdit(term));
             }
         }
+
+        private async void ViewClass_Clicked(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            var selectedTerm = btn.CommandParameter as Term;
+            await Navigation.PushAsync(new CourseList(selectedTerm));
+        }
     }
 }
