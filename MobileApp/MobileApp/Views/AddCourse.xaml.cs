@@ -39,6 +39,7 @@ namespace MobileApp.Views
                 await App.Current.MainPage.DisplayAlert("Invalid Dates", "The P.A. start date can't be greater than the P.A. end date.", "OK");
                 return;
             }
+            //We need to make sure that only 6 courses are entered per term
             var termCourses = await DatabaseService.GetCourses(_termId) as ICollection<Course>;
             if(termCourses.Count == 6)
             {
