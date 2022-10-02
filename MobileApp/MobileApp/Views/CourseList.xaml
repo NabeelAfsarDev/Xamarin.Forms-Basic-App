@@ -1,16 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:vm="clr-namespace:MobileApp.ViewModels"
+             xmlns:vm="clr-namespace:MobileApp.ViewModels" 
+             xmlns:converter="clr-namespace:UsefulConvertersSample.Converters"
              x:Class="MobileApp.Views.CourseList"
              Title="Courses">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:EmptyValueToBoolConverter x:Key="EmptyValueToBoolConverter"/>
+        </ResourceDictionary>
+        
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="AddCourses" Text="Add Course" Clicked="AddCourses_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
         <vm:CourseListViewModel />
     </ContentPage.BindingContext>
-    
+
+
     <ContentPage.Content>
         <StackLayout>
             <Label Padding="2" x:Name="lblTermId" FontSize="Small"></Label>
@@ -65,13 +74,13 @@
                                     </Label.Text>
                                 </Label>
                                 <Label Grid.Row="4" Grid.Column="0" FontSize="Subtitle" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start">Assessments</Label>
-                                <Label Grid.Row="5" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding ObjectiveAssessment}" />
-                                <Label Grid.Row="5" Grid.Column="1" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding OaStartEnd, StringFormat='{ddd, dd MMM yyy}'}" />
-                                <Label Grid.Row="6" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center">P.A.</Label>
-                                <Label Grid.Row="6" Grid.Column="1" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding OaStartEnd, StringFormat='{ddd, dd MMM yyy}'}" />
+                                <Label x:Name="lblOa" Grid.Row="5" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding ObjectiveAssessment}"  IsVisible="{Binding ObjectiveAssessment, Converter={StaticResource EmptyValueToBoolConverter}}"/>
+                                <Label x:Name="lblOaStartEnd" Grid.Row="5" Grid.Column="1" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding OaStartEnd, StringFormat='{ddd, dd MMM yyy}'}"  IsVisible="{Binding ObjectiveAssessment, Converter={StaticResource EmptyValueToBoolConverter}}"/>
+                                <Label x:Name="lblPa" Grid.Row="6" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding PerformanceAssessment}"  IsVisible="{Binding PerformanceAssessment, Converter={StaticResource EmptyValueToBoolConverter}}"/>
+                                <Label x:Name="lblPaStartEnd" Grid.Row="6" Grid.Column="1" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding OaStartEnd, StringFormat='{ddd, dd MMM yyy}'}" IsVisible="{Binding PerformanceAssessment, Converter={StaticResource EmptyValueToBoolConverter}}"/>
                                 <Label Grid.Row="7" Grid.Column="0" FontSize="Subtitle" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start">Course Notes</Label>
-                                <Label Grid.Row="7" Grid.Column="1" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding CourseNotes}" />
-
+                                <Label Grid.Row="7" Grid.Column="1" FontSize="Small" VerticalTextAlignment="Center" x:Name="lblCourseNotes" Text="{Binding CourseNotes}" />
+                                <Button Grid.Row="8" Grid.Column="0" Text="Share Notes" HorizontalOptions="FillAndExpand" HeightRequest="50" x:Name="ShareNotes" Clicked="ShareNotes_Clicked" CommandParameter="{Binding .}"/>
 
 
                             </Grid>

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -85,6 +86,25 @@ namespace MobileApp.Views
         {
             int termId = int.Parse(lblTermId.Text);
             await Navigation.PushAsync(new AddCourse(termId));
+        }
+
+        private async void ShareNotes_Clicked(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            var course = btn.CommandParameter as CoursesViewModel;
+
+            //Make sure course notes are added before sharing.
+            if (string.IsNullOrWhiteSpace(course.CourseNotes))
+            {
+                await App.Current.MainPage.DisplayAlert("Share Error", "No assessment notes to share!", "OK");
+                return;
+            }
+            //Share the notes.
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = course.CourseNotes,
+                Title = "Course Notes!"
+            });
         }
     }
 }

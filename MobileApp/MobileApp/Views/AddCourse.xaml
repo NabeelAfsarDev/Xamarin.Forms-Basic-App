@@ -46,8 +46,8 @@
                 <Label Grid.Row="7" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Objective Assessment</Label>
                 <Entry Text="{Binding ObjectiveAssessment}" x:Name="OA" Placeholder="Title" Grid.Row="7" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
 
-                <Label  Grid.Row="8" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">O.A. Start Date</Label>
-                <DatePicker Date="{Binding OaStart}" Grid.Row="8" Grid.Column="1" x:Name="OaStart"/>
+                <Label  Grid.Row="8" Grid.Column="0" FontSize="Medium" x:Name="lblOaStart" VerticalTextAlignment="Center">O.A. Start Date</Label>
+                <DatePicker Date="{Binding OaStart}" Grid.Row="8" Grid.Column="1" x:Name="OaStart"/>    
 
                 <Label  Grid.Row="9" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">O.A. End Date</Label>
                 <DatePicker Date="{Binding OaEnd}" Grid.Row="9" Grid.Column="1" x:Name="OaEnd"  />
