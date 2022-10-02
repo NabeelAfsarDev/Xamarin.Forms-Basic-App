@@ -25,6 +25,8 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>
+                    <Label Padding="2" x:Name="lblTermId" FontSize="Medium" HorizontalOptions="Center">TERMS</Label>
+
                     <Grid RowSpacing="2" ColumnSpacing="22" Padding="2" BackgroundColor="Azure">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>

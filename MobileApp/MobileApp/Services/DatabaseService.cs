@@ -12,7 +12,7 @@ namespace MobileApp.Services
     public static class DatabaseService
     {
         private static SQLiteAsyncConnection _db;
-
+       
         static async Task Init()
         {
             if (_db != null)
@@ -24,6 +24,8 @@ namespace MobileApp.Services
             _db = new SQLiteAsyncConnection(databasePath);
             await _db.CreateTableAsync<Term>();
             await _db.CreateTableAsync<Course>();
+
+      
         }
 
         public static async Task AddTerm(string title, DateTime start, DateTime end)

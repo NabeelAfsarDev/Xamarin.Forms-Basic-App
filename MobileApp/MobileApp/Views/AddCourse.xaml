@@ -53,7 +53,7 @@
                 <DatePicker Date="{Binding OaEnd}" Grid.Row="9" Grid.Column="1" x:Name="OaEnd"  />
 
                 <Label Grid.Row="10" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Performance Assessment</Label>
-                <Entry Text="{Binding PerformanceAssessment}" x:Name="PA" Placeholder="Course Title" Grid.Row="10" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
+                <Entry Text="{Binding PerformanceAssessment}" x:Name="PA" Placeholder="PA" Grid.Row="10" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
                 
                 <Label  Grid.Row="11" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">P.A. Start Date</Label>
                 <DatePicker Date="{Binding PaStart}" Grid.Row="11" Grid.Column="1" x:Name="PaStart"/>

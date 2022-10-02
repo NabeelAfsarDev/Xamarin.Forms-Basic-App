@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,16 +16,12 @@ namespace MobileApp.Views
         public Dashboard()
         {
             InitializeComponent();
+            OnAppearing();
         }
-
+    
         private async void AddGadget_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new TermAdd());
-        }
-
-        private async void ViewTerms_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new TermList());
         }
 
         private async void Settings_Clicked(object sender, EventArgs e)
