@@ -4,19 +4,21 @@ using System.Text;
 
 namespace MobileApp.ViewModels
 {
-    public class CoursesViewModel
+    public class AddCourseViewModel
     {
-        public int Id { get; set; }
         public string Title { get; set; }
-        public string CourseStartEnd { get; set; }
+        public DateTime CourseStart { get; set; }
+        public DateTime CourseEnd { get; set; }
+        public int TermId { get; set; }
         public string Status { get; set; }
-        public string CourseNotes { get; set; }
         public string InstructorName { get; set; }
         public string InstructorPhone { get; set; }
         public string InstructorEmail { get; set; }
         public string ObjectiveAssessment { get; set; }
         public string PerformanceAssessment { get; set; }
-        public string OaStartEnd { get; set; }
-        public string PaStartEnd { get; set; }
+        public DateTime OaStart { get; set; }
+        public DateTime OaEnd { get; set; }
+        public DateTime PaStart { get; set; }
+        public DateTime PaEnd { get; set; }
     }
 }

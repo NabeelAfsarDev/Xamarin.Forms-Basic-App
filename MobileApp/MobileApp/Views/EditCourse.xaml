@@ -2,11 +2,83 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileApp.Views.EditCourse">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" x:Name="SaveCourse" Clicked="SaveCourse_Clicked"></ToolbarItem>
+        <ToolbarItem Text="Delete" x:Name="DeleteCourse" Clicked="DeleteCourse_Clicked"></ToolbarItem>
+        <ToolbarItem Text="Cancel" x:Name="CancelCourse" Clicked="CancelCourse_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Edit Course"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid Padding="2" RowSpacing="1" ColumnSpacing="3" HorizontalOptions="CenterAndExpand" BackgroundColor="WhiteSmoke">
+              
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <!--Course Form Begin-->
+                <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">ID</Label>
+                <Entry Text="{Binding Id}" x:Name="CourseId" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+
+                <!--Course Title-->
+                <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Title</Label>
+                <Entry Text="{Binding Title}" x:Name="CourseTitle" Placeholder="Course Title" Grid.Row="1" Grid.Column="1" FontSize="Small" VerticalTextAlignment="Center" HorizontalOptions="Fill"></Entry>
+
+
+                <!--Course Start/End Dates-->
+                <Label  Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start</Label>
+                <DatePicker Date="{Binding CourseStart}" Grid.Row="2" Grid.Column="1" x:Name="CourseStart"/>
+
+                <Label  Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End</Label>
+                <DatePicker Date="{Binding CourseEnd}" Grid.Row="3" Grid.Column="1" x:Name="CourseEnd"  />
+
+                <!--Course Instructor Info-->
+                <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Course Instructor</Label>
+                <Entry Text="{Binding Instructor}" x:Name="CI" Placeholder="Instructor Name" Grid.Row="4" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
+
+                <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Instructor Email</Label>
+                <Entry Text="{Binding Title}" x:Name="CiEmail" Placeholder="Email" Grid.Row="5" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
+
+                <Label Grid.Row="6" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Instructor Phone</Label>
+                <Entry Text="{Binding Title}" x:Name="CiPhone" Placeholder="Phone #" Grid.Row="6" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
+
+                <!--Assessments Info-->
+                <Label Grid.Row="7" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Objective Assessment</Label>
+                <Entry Text="{Binding ObjectiveAssessment}" x:Name="OA" Placeholder="Title" Grid.Row="7" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
+
+                <Label  Grid.Row="8" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Assessment Start Date</Label>
+                <DatePicker Date="{Binding CourseStart}" Grid.Row="8" Grid.Column="1" x:Name="OaStart"/>
+
+                <Label  Grid.Row="9" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Assessment End Date</Label>
+                <DatePicker Date="{Binding CourseEnd}" Grid.Row="9" Grid.Column="1" x:Name="OaEnd"  />
+
+                <Label Grid.Row="10" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Performance Assessment</Label>
+                <Entry Text="{Binding PerformanceAssessment}" x:Name="PA" Placeholder="Course Title" Grid.Row="10" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
+
+                <Label  Grid.Row="11" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start Date</Label>
+                <DatePicker Date="{Binding PaStart}" Grid.Row="11" Grid.Column="1" x:Name="PaStart"/>
+
+                <Label  Grid.Row="12" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
+                <DatePicker Date="{Binding PaEnd}" Grid.Row="12" Grid.Column="1" x:Name="PaEnd"  />
+                <!--Course Notes-->
+                <Label  Grid.Row="13" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Course Notes</Label>
+                <Entry Text="{Binding CourseNotes}" x:Name="CourseNotes" Placeholder="Course Notes" Grid.Row="13" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
+
+                <!--Course Status-->
+                <Label  Grid.Row="14" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Course Status</Label>
+                <Picker x:Name="picker"
+                        Title="Select Status"
+                        TitleColor="Green"
+                        Grid.Row="14" Grid.Column="1">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Plan to Take</x:String>
+                            <x:String>In Progress</x:String>
+                            <x:String>Completed</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -15,7 +15,7 @@ namespace MobileApp.Models
         [Indexed]
         public int TermId { get; set; }
         public string Status { get; set; }
-
+        public string CourseNotes { get; set; }
         public string InstructorName { get; set; }
         public string InstructorPhone { get; set; }
         public string InstructorEmail { get; set; }

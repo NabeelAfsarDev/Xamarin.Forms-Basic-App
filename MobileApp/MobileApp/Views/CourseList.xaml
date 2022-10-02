@@ -1,14 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:MobileApp.ViewModels"
              x:Class="MobileApp.Views.CourseList"
              Title="Courses">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="AddCourses" Text="Add Course" Clicked="AddCourses_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <vm:CourseListViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="lblTermId" FontSize="Small"></Label>
+            <Label Padding="2" x:Name="lblTermId" FontSize="Small"></Label>
             <Label x:Name="lblTermTitle" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Center"></Label>
             <CollectionView x:Name="CourseCollection"
                     ItemsSource="{Binding Courses}"
@@ -26,30 +31,50 @@
                 <DataTemplate>
                     <StackLayout>
 
-                            <Grid Padding="5" RowSpacing="1" ColumnSpacing="22" BackgroundColor="Azure">
+                            <Grid Padding="10" RowSpacing="8" ColumnSpacing="30" BackgroundColor="Azure">
                                 <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="7*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding Title}"/>
-                            <Label Grid.Row="0" Grid.Column="1" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding Title}" />
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center" IsVisible="false" Text="{Binding Id}"/>
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" Text="{Binding Title}" />
+                            <Label Text="{Binding CourseStartEnd, StringFormat='{ddd, dd MMM yyy}'}" FontSize="Medium" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
 
-                            <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start</Label>
-                            <Label Text="{Binding StartDate, StringFormat='{ddd, dd MMM yyy}'}" FontSize="Medium" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" />
+                                <Label Grid.Row="1" Grid.Column="0" FontSize="Subtitle" TextColor="Green" VerticalTextAlignment="Center" Text="{Binding Status}"/>
 
-                            <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End</Label>
-                            <Label Text="{Binding EndDate, StringFormat='{ddd, dd MMM yyy}'}" Grid.Row="2" Grid.Column="1" FontSize="Medium"/>
+                            <Label Grid.Row="2" Grid.Column="0" FontSize="Subtitle" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start"> Course Instructor</Label>
+                                <Label Grid.Row="2" Grid.Column="1" FontSize="Small" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" Text="{Binding InstructorName}" />
 
-                            <Button Grid.Row="3" Grid.Column="1" Text="View Classes" x:Name="ViewClass" />
-                        </Grid>
+                                <Label x:Name="CiEmailPhone" Grid.Row="3" Grid.Column="1"  HorizontalOptions="StartAndExpand">
+                                    <Label.Text>
+                                        <MultiBinding  StringFormat="{}{0}  {1}">
+                                            <Binding Path="InstructorEmail" />
+                                            <Binding Path="InstructorPhone" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label Grid.Row="4" Grid.Column="0" FontSize="Subtitle" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start">Assessments</Label>
+                                <Label Grid.Row="5" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding ObjectiveAssessment}" />
+                                <Label Grid.Row="5" Grid.Column="1" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding OaStartEnd, StringFormat='{ddd, dd MMM yyy}'}" />
+                                <Label Grid.Row="6" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center">P.A.</Label>
+                                <Label Grid.Row="6" Grid.Column="1" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding OaStartEnd, StringFormat='{ddd, dd MMM yyy}'}" />
+                                <Label Grid.Row="7" Grid.Column="0" FontSize="Subtitle" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start">Course Notes</Label>
+                                <Label Grid.Row="7" Grid.Column="1" FontSize="Small" VerticalTextAlignment="Center" Text="{Binding CourseNotes}" />
+
+
+
+                            </Grid>
 
 
                     </StackLayout>

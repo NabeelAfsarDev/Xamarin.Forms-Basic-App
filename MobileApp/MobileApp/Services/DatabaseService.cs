@@ -58,7 +58,7 @@ namespace MobileApp.Services
             return terms;
         }
 
-        public static async Task UpdateWidget(int id, string title, DateTime start, DateTime end)
+        public static async Task UpdateTerm(int id, string title, DateTime start, DateTime end)
         {
             await Init();
 
@@ -72,7 +72,7 @@ namespace MobileApp.Services
             }
         }
 
-        public static async Task AddCourse(string title, int termId, DateTime start, DateTime end, string status, string instructor, string instructorPhone, string instructorEmail, string oa, string pa, DateTime oastart, DateTime oaEnd, DateTime paStart, DateTime paEnd)
+        public static async Task AddCourse(string title, int termId, string notes, DateTime start, DateTime end, string status, string instructor, string instructorPhone, string instructorEmail, string oa, string pa, DateTime oastart, DateTime oaEnd, DateTime paStart, DateTime paEnd)
         {
             await Init();
             var course = new Course
@@ -80,6 +80,7 @@ namespace MobileApp.Services
                TermId = termId,
                Title = title,
                Status = status,
+               CourseNotes = notes,
                CourseStart = TimeZoneInfo.ConvertTimeToUtc(start, TimeZoneInfo.Local),
                CourseEnd = TimeZoneInfo.ConvertTimeToUtc(end, TimeZoneInfo.Local),
                InstructorName = instructor,
@@ -121,7 +122,7 @@ namespace MobileApp.Services
             return courses;
         }
 
-        public static async Task UpdateWidget(int courseId, string title, DateTime start, DateTime end, string status, string instructor, string instructorPhone, string instructorEmail, string oa, string pa, DateTime oastart, DateTime oaEnd, DateTime paStart, DateTime paEnd)
+        public static async Task UpdateCourse(int courseId, string title, DateTime start, DateTime end, string status,string notes, string instructor, string instructorPhone, string instructorEmail, string oa, string pa, DateTime oastart, DateTime oaEnd, DateTime paStart, DateTime paEnd)
         {
             await Init();
 
@@ -129,18 +130,19 @@ namespace MobileApp.Services
             if (course != null)
             {
                course.Title = title;
-               course.CourseStart = start;
-               course.CourseEnd = end;
+               course.CourseStart = TimeZoneInfo.ConvertTimeToUtc(start, TimeZoneInfo.Local);
+               course.CourseEnd = TimeZoneInfo.ConvertTimeToUtc(end, TimeZoneInfo.Local);
                 course.Status = status;
+                course.CourseNotes = notes;
                course.InstructorName = instructor;
                course.InstructorEmail = instructorEmail;
                course.InstructorPhone = instructorPhone;
                course.ObjectiveAssessment = oa;
                course.PerformanceAssessment = pa;
-               course.OaStart = oastart;
-               course.OaEnd = oaEnd;
-               course.PaStart = paStart;
-                course.PaEnd = paEnd;
+               course.OaStart = TimeZoneInfo.ConvertTimeToUtc(oastart, TimeZoneInfo.Local);
+                course.OaEnd = TimeZoneInfo.ConvertTimeToUtc(oaEnd, TimeZoneInfo.Local);
+                course.PaStart = TimeZoneInfo.ConvertTimeToUtc(paStart, TimeZoneInfo.Local);
+                course.PaEnd = TimeZoneInfo.ConvertTimeToUtc(paEnd, TimeZoneInfo.Local);
                 await _db.UpdateAsync(course);
             }
         }
