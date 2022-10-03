@@ -46,7 +46,7 @@ namespace MobileApp.Views
                 return;
             }
 
-            await DatabaseService.AddTerm(TermTitle.Text, StartDate.Date, EndDate.Date);
+            await DatabaseService.UpdateTerm(int.Parse(TermId.Text),TermTitle.Text, StartDate.Date, EndDate.Date);
             await Navigation.PopAsync();
         }
 

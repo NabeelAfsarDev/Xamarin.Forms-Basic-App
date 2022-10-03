@@ -134,7 +134,7 @@ namespace MobileApp.Services
                course.Title = title;
                course.CourseStart = TimeZoneInfo.ConvertTimeToUtc(start, TimeZoneInfo.Local);
                course.CourseEnd = TimeZoneInfo.ConvertTimeToUtc(end, TimeZoneInfo.Local);
-                course.Status = status;
+               course.Status = status;
                 course.CourseNotes = notes;
                course.InstructorName = instructor;
                course.InstructorEmail = instructorEmail;
