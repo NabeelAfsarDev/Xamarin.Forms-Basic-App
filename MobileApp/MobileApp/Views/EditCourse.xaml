@@ -74,6 +74,7 @@
                             <x:String>Plan to Take</x:String>
                             <x:String>In Progress</x:String>
                             <x:String>Completed</x:String>
+                            <x:String>Dropped</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
